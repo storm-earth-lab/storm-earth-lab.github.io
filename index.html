@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STORM Research Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3D6B;
+      --navy-dark: #122B4E;
+      --navy-light: #2A5298;
+      --navy-pale: #E8EFF8;
+      --navy-mist: #F2F6FB;
+      --accent: #4A90C4;
+      --text-primary: #0F1F33;
+      --text-secondary: #4A5568;
+      --text-muted: #8A9BB0;
+      --border: rgba(27, 61, 107, 0.12);
+      --border-strong: rgba(27, 61, 107, 0.22);
+      --white: #ffffff;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--navy); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--navy-dark);
+      padding-top: 60px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.18;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text { animation: fadeUp 0.8s ease both; }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-title strong {
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--navy-dark);
+    }
+
+    .btn-primary:hover { background: var(--navy-pale); }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+    }
+
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.06); }
+
+    .hero-graphic {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* MISSION */
+    .mission {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .mission-text {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-primary);
+      max-width: 720px;
+      border-left: 3px solid var(--navy);
+      padding-left: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* PILLARS */
+    .pillars-section {
+      background: var(--navy-mist);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 2.5rem;
+    }
+
+    .pillar {
+      background: var(--white);
+      padding: 2rem;
+    }
+
+    .pillar-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .icon-obs { background: #E1F5EE; }
+    .icon-rea { background: #E8EFF8; }
+    .icon-mod { background: #EEEDFE; }
+
+    .pillar-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .pillar-gloss {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .pillar-body {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border-strong);
+      color: var(--text-secondary);
+    }
+
+    /* METHODS */
+    .methods-box {
+      background: var(--navy-pale);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .methods-box h3 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .methods-box p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 2rem;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-graphic { display: none; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="storm-logo.jpg" alt="STORM Research Group">
+    </a>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <svg class="hero-bg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Globe grid lines -->
+    <ellipse cx="600" cy="400" rx="320" ry="320" fill="none" stroke="white" stroke-width="0.8"/>
+    <ellipse cx="600" cy="400" rx="320" ry="160" fill="none" stroke="white" stroke-width="0.6"/>
+    <ellipse cx="600" cy="400" rx="320" ry="60" fill="none" stroke="white" stroke-width="0.5"/>
+    <line x1="600" y1="80" x2="600" y2="720" stroke="white" stroke-width="0.6"/>
+    <line x1="280" y1="400" x2="920" y2="400" stroke="white" stroke-width="0.6"/>
+    <line x1="320" y1="220" x2="880" y2="220" stroke="white" stroke-width="0.4"/>
+    <line x1="320" y1="580" x2="880" y2="580" stroke="white" stroke-width="0.4"/>
+    <line x1="380" y1="130" x2="820" y2="130" stroke="white" stroke-width="0.3"/>
+    <line x1="380" y1="670" x2="820" y2="670" stroke="white" stroke-width="0.3"/>
+    <line x1="450" y1="90" x2="450" y2="710" stroke="white" stroke-width="0.4"/>
+    <line x1="750" y1="90" x2="750" y2="710" stroke="white" stroke-width="0.4"/>
+    <!-- Cloud-like shapes -->
+    <ellipse cx="560" cy="360" rx="90" ry="45" fill="white" opacity="0.08"/>
+    <ellipse cx="620" cy="340" rx="70" ry="38" fill="white" opacity="0.08"/>
+    <ellipse cx="490" cy="375" rx="55" ry="30" fill="white" opacity="0.06"/>
+    <!-- Wave lines -->
+    <path d="M 300 480 Q 400 460 500 480 Q 600 500 700 480 Q 800 460 900 480" fill="none" stroke="white" stroke-width="1.2" opacity="0.4"/>
+    <path d="M 280 510 Q 400 488 520 510 Q 640 532 760 510 Q 880 488 960 510" fill="none" stroke="white" stroke-width="0.8" opacity="0.25"/>
+    <!-- Data points scattered -->
+    <circle cx="350" cy="280" r="2" fill="white" opacity="0.4"/>
+    <circle cx="820" cy="310" r="2" fill="white" opacity="0.4"/>
+    <circle cx="480" cy="200" r="1.5" fill="white" opacity="0.3"/>
+    <circle cx="720" cy="190" r="1.5" fill="white" opacity="0.3"/>
+    <circle cx="390" cy="500" r="2" fill="white" opacity="0.35"/>
+    <circle cx="850" cy="460" r="2" fill="white" opacity="0.35"/>
+    <circle cx="550" cy="160" r="1.5" fill="white" opacity="0.25"/>
+    <circle cx="670" cy="600" r="1.5" fill="white" opacity="0.25"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Scientific Tools for Observing, Reasoning &amp; Modeling</p>
+      <h1 class="hero-title">The <strong>STORM</strong> Research Group</h1>
+      <p class="hero-desc">We develop and apply scientific tools to study atmospheric and climate processes, combining observations, physical modeling, and data-driven methods.</p>
+      <div class="hero-cta">
+        <a href="research.html" class="btn btn-primary">Our research</a>
+        <a href="people.html" class="btn btn-outline">Meet the group</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <svg viewBox="0 0 380 380" width="380" height="380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer globe -->
+        <circle cx="190" cy="190" r="160" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <ellipse cx="190" cy="190" rx="160" ry="70" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <ellipse cx="190" cy="190" rx="160" ry="25" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+        <line x1="190" y1="30" x2="190" y2="350" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="60" y1="120" x2="320" y2="120" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+        <line x1="40" y1="190" x2="340" y2="190" stroke="rgba(255,255,255,0.1)" stroke-width="0.8"/>
+        <line x1="60" y1="260" x2="320" y2="260" stroke="rgba(255,255,255,0.08)" stroke-width="0.6"/>
+        <line x1="110" y1="30" x2="110" y2="350" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
+        <line x1="270" y1="30" x2="270" y2="350" stroke="rgba(255,255,255,0.07)" stroke-width="0.6"/>
+        <!-- Cloud -->
+        <ellipse cx="185" cy="175" rx="52" ry="26" fill="rgba(255,255,255,0.12)"/>
+        <ellipse cx="210" cy="162" rx="38" ry="22" fill="rgba(255,255,255,0.1)"/>
+        <ellipse cx="158" cy="182" rx="30" ry="18" fill="rgba(255,255,255,0.09)"/>
+        <!-- Wave -->
+        <path d="M 100 220 Q 145 205 190 220 Q 235 235 280 220" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M 120 238 Q 155 225 190 238 Q 225 251 260 238" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Data points -->
+        <circle cx="130" cy="140" r="3" fill="rgba(74,144,196,0.8)"/>
+        <circle cx="255" cy="155" r="3" fill="rgba(74,144,196,0.8)"/>
+        <circle cx="150" cy="255" r="3" fill="rgba(74,144,196,0.6)"/>
+        <circle cx="240" cy="260" r="3" fill="rgba(74,144,196,0.6)"/>
+        <circle cx="190" cy="95" r="2.5" fill="rgba(255,255,255,0.5)"/>
+        <circle cx="100" cy="190" r="2" fill="rgba(255,255,255,0.4)"/>
+        <circle cx="280" cy="190" r="2" fill="rgba(255,255,255,0.4)"/>
+        <!-- Connecting lines -->
+        <line x1="130" y1="140" x2="190" y2="95" stroke="rgba(74,144,196,0.3)" stroke-width="0.8"/>
+        <line x1="255" y1="155" x2="190" y2="95" stroke="rgba(74,144,196,0.3)" stroke-width="0.8"/>
+        <line x1="130" y1="140" x2="255" y2="155" stroke="rgba(74,144,196,0.2)" stroke-width="0.8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="container">
+    <p class="section-label">About the group</p>
+    <h2 class="section-title">Research overview</h2>
+    <p class="mission-text">We develop and apply scientific tools to study atmospheric and climate processes, combining observations, physical modeling, and data-driven methods. Our work spans a range of scales and phenomena, from cloud-scale dynamics to seasonal variability, with the goal of improving how these processes are understood, represented, and predicted.</p>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars-section">
+  <div class="container">
+    <p class="section-label">How we work</p>
+    <h2 class="section-title">Three research pillars</h2>
+
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon icon-obs">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6" stroke="#0F6E56" stroke-width="1.3"/><circle cx="9" cy="9" r="2.5" fill="#0F6E56"/><line x1="9" y1="1" x2="9" y2="3.5" stroke="#0F6E56" stroke-width="1.3"/><line x1="9" y1="14.5" x2="9" y2="17" stroke="#0F6E56" stroke-width="1.3"/><line x1="1" y1="9" x2="3.5" y2="9" stroke="#0F6E56" stroke-width="1.3"/><line x1="14.5" y1="9" x2="17" y2="9" stroke="#0F6E56" stroke-width="1.3"/></svg>
+        </div>
+        <p class="pillar-title">Observe</p>
+        <p class="pillar-gloss">O in STORM</p>
+        <p class="pillar-body">We work with ground-based and satellite observations to produce reliable atmospheric datasets. This includes denoising ARM observatory retrievals, and developing high-resolution precipitation and temperature datasets over Africa for use in convection research and health applications.</p>
+        <div class="pill-list">
+          <span class="pill">ARM retrievals</span>
+          <span class="pill">Downscaling</span>
+          <span class="pill">Africa climate</span>
+          <span class="pill">Remote sensing</span>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon icon-rea">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 14 Q5.5 4 9 9 Q12.5 14 16 4" stroke="#185FA5" stroke-width="1.4" fill="none" stroke-linecap="round"/><circle cx="2" cy="14" r="1.8" fill="#185FA5"/><circle cx="16" cy="4" r="1.8" fill="#185FA5"/></svg>
+        </div>
+        <p class="pillar-title">Reason</p>
+        <p class="pillar-gloss">R in STORM — process understanding</p>
+        <p class="pillar-body">We study atmospheric processes, particularly convection and the planetary boundary layer, using a combination of observations, large-eddy simulation, reanalysis, and data analysis. We are interested in what controls the transition from shallow to deep convection, and what sets the predictability of precipitation across time and space.</p>
+        <div class="pill-list">
+          <span class="pill">Shallow-to-deep convection</span>
+          <span class="pill">PBL dynamics</span>
+          <span class="pill">Predictability</span>
+          <span class="pill">Process studies</span>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon icon-mod">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="10" width="4" height="6" rx="1" fill="#534AB7"/><rect x="7" y="6" width="4" height="10" rx="1" fill="#534AB7" opacity="0.7"/><rect x="12" y="2" width="4" height="14" rx="1" fill="#534AB7" opacity="0.4"/></svg>
+        </div>
+        <p class="pillar-title">Model</p>
+        <p class="pillar-gloss">M in STORM</p>
+        <p class="pillar-body">We develop data-driven tools for modeling atmospheric processes, including convective parameterizations, dynamical system emulators, and parameter estimation frameworks. A recurring theme is how to incorporate physical constraints into learned models, so that they remain consistent with known conservation laws.</p>
+        <div class="pill-list">
+          <span class="pill">Convective param.</span>
+          <span class="pill">Dynamical emulation</span>
+          <span class="pill">Physics-informed ML</span>
+          <span class="pill">Parameter estimation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="methods-box">
+      <h3>Methods</h3>
+      <p>We draw on a range of tools, including numerical simulation, statistical inference, remote sensing, and machine learning, depending on what the problem calls for. Generative modeling approaches such as normalizing flows, flow matching, and diffusion models appear across several projects, particularly where uncertainty quantification or probabilistic output is important.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>STORM Research Group</span>
+    <ul class="footer-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
