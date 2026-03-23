@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Opportunities — STORM Research Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3D6B;
+      --navy-dark: #1a4a7a;
+      --navy-light: #2A5298;
+      --navy-pale: #E8EFF8;
+      --navy-mist: #F2F6FB;
+      --accent: #4A90C4;
+      --text-primary: #0F1F33;
+      --text-secondary: #4A5568;
+      --text-muted: #8A9BB0;
+      --border: rgba(27, 61, 107, 0.12);
+      --border-strong: rgba(27, 61, 107, 0.22);
+      --white: #ffffff;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+
+    /* PAGE */
+    .page-header {
+      background: var(--navy-dark);
+      padding: 7rem 2rem 3rem;
+    }
+
+    .page-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    /* NEWS */
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .news-row:first-child { border-top: 1px solid var(--border); }
+
+    .news-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      min-width: 50px;
+      padding-top: 3px;
+      white-space: nowrap;
+    }
+
+    .news-body { flex: 1; }
+
+    .news-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-bottom: 6px;
+    }
+
+    .tag-paper { background: #EEEDFE; color: #3C3489; }
+    .tag-member { background: #E1F5EE; color: #0F6E56; }
+    .tag-talk { background: #E6F1FB; color: #0C447C; }
+    .tag-award { background: #FAEEDA; color: #633806; }
+
+    .news-text {
+      font-size: 14px;
+      color: var(--text-primary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .news-link {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-top: 5px;
+      display: inline-block;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .news-link:hover { color: var(--navy); }
+
+    /* OPPORTUNITIES */
+    .opp-section { position: sticky; top: 90px; }
+
+    .opp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .opp-card {
+      background: var(--navy-mist);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .opp-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .opp-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .opp-badge {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .badge-open { background: #E1F5EE; color: #0F6E56; border: 1px solid #9FE1CB; }
+    .badge-closed { background: var(--navy-mist); color: var(--text-muted); border: 1px solid var(--border); }
+
+    .opp-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0 0 8px;
+    }
+
+    .opp-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 0 0 8px;
+    }
+
+    .opp-link {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      padding: 3px 10px;
+      display: inline-block;
+    }
+
+    .opp-link:hover { color: var(--navy); border-color: var(--navy); }
+
+    .opp-intro {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 2rem;
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 768px) {
+      .content { grid-template-columns: 1fr; }
+      .opp-section { position: static; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="storm-logo-v2.png" alt="STORM Research Group">
+    </a>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="news.html" class="active">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-label">STORM Research Group</p>
+    <h1 class="page-title">News & Opportunities</h1>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- NEWS -->
+  <div class="news-section">
+    <p class="section-label">Recent news</p>
+    <div class="news-list">
+
+      <div class="news-row">
+        <span class="news-date">2025</span>
+        <div class="news-body">
+          <span class="news-tag tag-talk">Conference</span>
+          <p class="news-text">Matthieu Blanke is presenting a poster at ICLR — Strictly Constrained Generative Modeling via Split Augmented Langevin Sampling.</p>
+          <a class="news-link" href="https://arxiv.org/abs/2505.18017" target="_blank">Read the paper</a>
+        </div>
+      </div>
+
+      <div class="news-row">
+        <span class="news-date">2025</span>
+        <div class="news-body">
+          <span class="news-tag tag-member">New member</span>
+          <p class="news-text">Jangho Lee joins the group as a postdoctoral researcher. Jangho will work on downscaling climate data over Africa.</p>
+        </div>
+      </div>
+
+      <div class="news-row">
+        <span class="news-date">2025</span>
+        <div class="news-body">
+          <span class="news-tag tag-paper">New paper</span>
+          <p class="news-text">New paper by Renaud is available on arXiv. [Add title here]</p>
+          <a class="news-link" href="https://arxiv.org/abs/2511.01766" target="_blank">Read the paper</a>
+        </div>
+      </div>
+
+      <div class="news-row">
+        <span class="news-date">2025</span>
+        <div class="news-body">
+          <span class="news-tag tag-paper">New paper</span>
+          <p class="news-text">Sara's paper is available online. [Add title here]</p>
+          <a class="news-link" href="https://www.authorea.com/doi/full/10.22541/au.176185709.98292011" target="_blank">Read the paper</a>
+        </div>
+      </div>
+
+      <div class="news-row">
+        <span class="news-date">2025</span>
+        <div class="news-body">
+          <span class="news-tag tag-talk">Conference</span>
+          <p class="news-text">Anurup Naskar will present his work on ARM data retrieval at NeurIPS 2025.</p>
+          <a class="news-link" href="https://arxiv.org/abs/2508.14957" target="_blank">Read the paper</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OPPORTUNITIES -->
+  <div class="opp-section">
+    <p class="section-label">Opportunities</p>
+    <p class="opp-intro">We welcome motivated students and researchers with backgrounds in atmospheric science, applied mathematics, statistics, or related fields. If you are interested in joining, please reach out with a brief description of your background and interests.</p>
+    <div class="opp-list">
+
+      <div class="opp-card">
+        <div class="opp-header">
+          <p class="opp-title">Postdoctoral researcher</p>
+          <span class="opp-badge badge-open">Open</span>
+        </div>
+        <p class="opp-desc">We are looking for a postdoctoral researcher to work on [topic]. Candidates should have a PhD in atmospheric science, applied mathematics, or a related field.</p>
+        <p class="opp-note">Start date: flexible.</p>
+        <a class="opp-link" href="contact.html">Get in touch</a>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-header">
+          <p class="opp-title">PhD students</p>
+          <span class="opp-badge badge-open">Open</span>
+        </div>
+        <p class="opp-desc">Students interested in atmospheric science, machine learning, or scientific computing are encouraged to apply and mention the STORM group in their statement.</p>
+        <p class="opp-note">Applications due: [date].</p>
+        <a class="opp-link" href="#">Department admissions</a>
+      </div>
+
+      <div class="opp-card">
+        <div class="opp-header">
+          <p class="opp-title">Undergraduate and master's research</p>
+          <span class="opp-badge badge-open">Open</span>
+        </div>
+        <p class="opp-desc">We occasionally host undergraduate and master's students for research projects. Feel free to get in touch if you are interested.</p>
+        <a class="opp-link" href="contact.html">Get in touch</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>STORM Research Group</span>
+    <ul class="footer-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
