@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teaching — STORM Research Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1B3D6B;
+      --navy-dark: #1a4a7a;
+      --navy-light: #2A5298;
+      --navy-pale: #E8EFF8;
+      --navy-mist: #F2F6FB;
+      --accent: #4A90C4;
+      --text-primary: #0F1F33;
+      --text-secondary: #4A5568;
+      --text-muted: #8A9BB0;
+      --border: rgba(27, 61, 107, 0.12);
+      --border-strong: rgba(27, 61, 107, 0.22);
+      --white: #ffffff;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text-primary);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      height: 72px;
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo img { height: 52px; width: auto; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--navy); }
+
+    /* PAGE HEADER */
+    .page-header {
+      background: var(--navy-dark);
+      padding: 7rem 2rem 3rem;
+    }
+
+    .page-header-inner { max-width: 1100px; margin: 0 auto; }
+
+    .page-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 300;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    /* PHILOSOPHY */
+    .philosophy {
+      border-left: 3px solid var(--navy);
+      padding-left: 1.5rem;
+      margin-bottom: 3.5rem;
+      max-width: 680px;
+    }
+
+    .philosophy p {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-primary);
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* COURSE LIST */
+    .level-block { margin-bottom: 3rem; }
+
+    .level-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .course-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .course-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .course-card:hover {
+      border-color: var(--navy-light);
+      box-shadow: 0 2px 12px rgba(27,61,107,0.07);
+    }
+
+    .course-num {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      white-space: nowrap;
+      padding-top: 3px;
+      min-width: 90px;
+    }
+
+    .course-body { flex: 1; }
+
+    .course-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--navy);
+      margin: 0 0 4px;
+    }
+
+    .course-tagline {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 9px;
+      border-radius: 20px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .badge-soon {
+      background: #FAEEDA;
+      color: #633806;
+      border: 1px solid #FAC775;
+    }
+
+    .course-arrow {
+      font-size: 18px;
+      color: var(--text-muted);
+      padding-top: 2px;
+      transition: transform 0.15s;
+    }
+
+    .course-card:hover .course-arrow { transform: translateX(3px); }
+
+    /* DETAIL PANEL */
+    .detail-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(15, 31, 51, 0.45);
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .detail-overlay.open { display: flex; }
+
+    .detail-panel {
+      background: var(--white);
+      width: min(680px, 100vw);
+      height: 100vh;
+      overflow-y: auto;
+      padding: 2.5rem 2rem;
+      animation: slideIn 0.25s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .detail-close {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-bottom: 2rem;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .detail-close:hover { color: var(--text-primary); }
+
+    .detail-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .detail-title {
+      font-family: var(--font-serif);
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .detail-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-section:last-child { border-bottom: none; }
+
+    .detail-section-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .detail-section ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .detail-section ul li {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .detail-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .week-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .week-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .week-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+
+    .week-table td:first-child {
+      color: var(--text-muted);
+      min-width: 70px;
+      font-size: 12px;
+    }
+
+    .week-table tr.part-row td {
+      font-weight: 500;
+      color: var(--navy);
+      background: var(--navy-mist);
+      padding: 6px 8px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .ref-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .ref-item {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .ref-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--border-strong);
+    }
+
+    .ref-item em { color: var(--text-muted); font-style: italic; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-dark);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 2rem;
+      font-size: 13px;
+      margin-top: 4rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .detail-panel { width: 100vw; }
+      .course-card { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="storm-logo-v2.png" alt="STORM Research Group">
+    </a>
+    <ul class="nav-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html" class="active">Teaching</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-label">STORM Research Group</p>
+    <h1 class="page-title">Teaching</h1>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="philosophy">
+    <p>I teach courses at both the undergraduate and graduate levels. In all of them, I try to build intuition first and let the formal rigor follow naturally. I believe both are necessary to do good science, and that they reinforce each other. In graduate courses, computation plays a central role, and topics are connected as much as possible to open problems in climate and earth system science.</p>
+  </div>
+
+  <!-- GRADUATE -->
+  <div class="level-block">
+    <p class="section-label">Graduate</p>
+    <div class="course-list">
+
+      <div class="course-card" onclick="openDetail('ddcs')">
+        <span class="course-num">MATH-GA 3006</span>
+        <div class="course-body">
+          <p class="course-name">Data-Driven Climate Science</p>
+          <p class="course-tagline">Machine learning and statistical methods applied to climate science, from neural networks to generative models, with hands-on coding throughout.</p>
+        </div>
+        <span class="course-arrow">›</span>
+      </div>
+
+      <div class="course-card" onclick="openDetail('cd')">
+        <span class="course-num">Grad</span>
+        <div class="course-body">
+          <p class="course-name">Climate Dynamics</p>
+          <p class="course-tagline">Physical mechanisms governing Earth's climate system, from atmospheric and oceanic circulation to variability and feedbacks across timescales.</p>
+        </div>
+        <span class="course-arrow">›</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UNDERGRADUATE -->
+  <div class="level-block">
+    <p class="section-label">Undergraduate</p>
+    <div class="course-list">
+
+      <div class="course-card" onclick="openDetail('ode')">
+        <span class="course-num">MATH-UA 262</span>
+        <div class="course-body">
+          <p class="course-name">Ordinary Differential Equations</p>
+          <p class="course-tagline">Introduction to ODEs with emphasis on physical intuition, qualitative methods, and applications in science and engineering.</p>
+        </div>
+        <span class="course-arrow">›</span>
+      </div>
+
+      <div class="course-card" onclick="openDetail('mm')">
+        <span class="course-num">UG</span>
+        <div class="course-body">
+          <p class="course-name">Introduction to Mathematical Modeling<span class="badge badge-soon">Coming next semester</span></p>
+          <p class="course-tagline">Building and analyzing mathematical models of real-world systems, moving between physical intuition, formal formulation, and computational experimentation.</p>
+        </div>
+        <span class="course-arrow">›</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- DETAIL PANELS -->
+<div class="detail-overlay" id="overlay" onclick="closeDetail(event)">
+  <div class="detail-panel" id="detail-panel">
+    <!-- content injected by JS -->
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>STORM Research Group</span>
+    <ul class="footer-links">
+      <li><a href="research.html">Research</a></li>
+      <li><a href="people.html">People</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="teaching.html">Teaching</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const courses = {
+  ddcs: {
+    num: "MATH-GA 3006",
+    title: "Data-Driven Climate Science",
+    description: "This course explores the application of data-driven techniques in climate science, focusing on statistical methods, machine learning, and data assimilation. Students learn how to analyze large climate datasets, extract meaningful patterns, and develop predictive models. Through hands-on exercises, we cover topics from observational data processing to neural networks and generative models for climate prediction. The course is designed for students interested in leveraging modern data science to address key challenges in climate research.",
+    prerequisites: "Linear algebra, differential equations (ideally PDEs), probability, and comfort coding in Python or another programming language. Examples are drawn from fluid dynamics and climate science.",
+    outcomes: [
+      "Apply data-driven techniques including PCA, neural networks, and hybrid models to climate science problems",
+      "Implement optimization techniques to train and improve machine learning models",
+      "Use dynamical systems approaches such as Koopman analysis and DMD to analyze atmospheric and oceanic processes",
+      "Develop and compare ML-based emulation methods for parameterization and time series forecasting",
+      "Extract physically meaningful insights from data-driven models and critically analyze research papers"
+    ],
+    assessment: "Class participation, paper discussions (debate-style: one team pro, one team against), and a final project applying four methods from the course to a climate dataset. Students present their results to the class.",
+    schedule: [
+      { part: "Part I — Fundamentals" },
+      { week: "Week 1", topic: "Course intro: function approximation, shallow neural networks" },
+      { week: "Week 2", topic: "ML in climate science; training, backpropagation, optimization" },
+      { week: "Week 3", topic: "Optimization continued; CNNs" },
+      { week: "Week 4", topic: "Representation learning: PCA, autoencoders, other methods" },
+      { week: "Week 5", topic: "RNNs and their variants" },
+      { week: "Week 6", topic: "Probability and information theory; normalizing flows" },
+      { week: "Week 7", topic: "Variational autoencoders (VAEs)" },
+      { week: "Week 8", topic: "Adversarial methods; diffusion models" },
+      { part: "Part II — Applications in Climate Science" },
+      { week: "Week 9", topic: "Parameterization and hybrid modeling" },
+      { week: "Week 10", topic: "Koopman methods; parameter estimation and calibration" },
+      { week: "Week 11", topic: "Transfer learning and meta-learning" },
+      { week: "Week 12", topic: "Data assimilation; emulation and PDE approximation" },
+      { week: "Week 13", topic: "Bringing in physics" },
+      { week: "Week 14", topic: "Symbolic regression; final project discussion" },
+      { week: "Week 15", topic: "Final project presentations" }
+    ],
+    references: [
+      { title: "Pattern Recognition and Machine Learning", authors: "Christopher Bishop" },
+      { title: "An Introduction to Statistical Learning", authors: "James, Witten, Hastie, Tibshirani" },
+      { title: "Mathematics for Machine Learning", authors: "Deisenroth, Faisal, Ong" },
+      { title: "Data-Driven Science and Engineering", authors: "Brunton, Kutz" }
+    ]
+  },
+  cd: {
+    num: "Graduate",
+    title: "Climate Dynamics",
+    description: "A graduate-level course on the physical mechanisms governing Earth's climate system. Starting from atmospheric thermodynamics and convection, the course builds toward large-scale circulation, radiative transfer, surface energy balance, and internal climate variability. Topics are developed from first principles, with close attention to the physical reasoning behind each result. The course draws on primary literature throughout, and includes guest lectures and paper discussions.",
+    prerequisites: "Graduate standing in atmospheric science, applied mathematics, or a related field. Familiarity with differential equations and basic thermodynamics recommended.",
+    outcomes: [
+      "Derive and apply the thermodynamic laws governing atmospheric structure, dry and moist convection, and convective instability",
+      "Analyze Earth's energy balance using zero- and one-dimensional models, including ice-albedo feedback and multi-equilibria",
+      "Understand radiative transfer in the atmosphere, including two-stream approximation, gray atmosphere, and radiative-convective equilibrium",
+      "Characterize surface energy balance over land and ocean, and what controls near-surface temperature and humidity",
+      "Understand large-scale atmospheric and oceanic circulation, including geostrophic balance, Hadley cell, Walker circulation, and thermohaline circulation",
+      "Analyze modes of internal climate variability including ENSO, IPO, PDO, and IOD",
+      "Quantify climate sensitivity and feedbacks using frameworks from the IPCC and primary literature"
+    ],
+    assessment: "Problem sets, paper discussions, and a final project connecting course topics to current research questions.",
+    schedule: [
+      { part: "Atmospheric thermodynamics and convection" },
+      { week: "", topic: "Atmospheric structure; first and second law of thermodynamics" },
+      { week: "", topic: "Dry and moist adiabats; plume model and entrainment" },
+      { week: "", topic: "CAPE and CIN — seasonality, land vs ocean contrasts" },
+      { week: "", topic: "Convection-large-scale interaction: quasi-equilibrium and convective adjustment" },
+      { week: "", topic: "CISK and low-level convergence; convective organization and recent models" },
+      { week: "", topic: "CAPE under climate change: zero-buoyancy plume model (Singh and O'Gorman 2014)" },
+      { part: "Earth energy balance" },
+      { week: "", topic: "Zero-dimensional climate model and SST; one-layer atmosphere (blackbody and graybody)" },
+      { week: "", topic: "OLR and surface temperature under gray and black body atmospheres" },
+      { week: "", topic: "Meridional energy transport: one-dimensional model, estimation, parameterization as diffusion" },
+      { week: "", topic: "Ice-albedo feedback; energy balance with albedo-temperature dependence" },
+      { week: "", topic: "Multiple equilibria, snowball Earth, albedo asymmetry" },
+      { part: "Radiative transfer" },
+      { week: "", topic: "Emissivity and absorptivity; two-stream radiation; radiative heating rates" },
+      { week: "", topic: "Thin and thick approximations; gray atmosphere; radiative equilibrium" },
+      { week: "", topic: "Radiative-convective equilibrium; Jeevanjee (2023) paper discussion" },
+      { part: "Surface energy balance" },
+      { week: "", topic: "Surface energy fluxes and their contributions to land-atmosphere temperature differences" },
+      { week: "", topic: "What sets land temperature and humidity (Byrne and O'Gorman)" },
+      { week: "", topic: "Near-surface relative humidity over land and ocean; guest lecture on land-climate interactions" },
+      { part: "Large-scale circulation" },
+      { week: "", topic: "Geostrophic and hydrostatic balance; weak temperature gradient approximation" },
+      { week: "", topic: "Hadley cell and other meridional overturning cells" },
+      { week: "", topic: "Walker circulation; monsoon dynamics" },
+      { week: "", topic: "Midlatitude dynamics" },
+      { part: "Ocean circulation" },
+      { week: "", topic: "Wind-driven circulation; thermohaline circulation; MOCs" },
+      { week: "", topic: "AMOC weakening" },
+      { part: "Internal variability and paleoclimate" },
+      { week: "", topic: "ENSO: mechanisms and review; IPO, PDO, IOD" },
+      { week: "", topic: "Glacial-deglacial cycles; mechanisms of paleoclimate change" },
+      { part: "Climate sensitivity and feedbacks" },
+      { week: "", topic: "Climate sensitivity framework (IPCC); water vapor and lapse rate feedbacks (Held and Soden 2006)" },
+      { week: "", topic: "Cloud feedbacks; physics of the climate system (Jeevanjee lectures)" }
+    ],
+    references: [
+      { title: "Principles of Planetary Climate", authors: "Pierrehumbert (ch. 3, 4, 6)" },
+      { title: "Atmospheric Science", authors: "Vallis (large-scale dynamics)" },
+      { title: "Atmosphere, Ocean and Climate Dynamics", authors: "Marshall and Plumb (ch. 9-11)" },
+      { title: "Global Physical Climatology", authors: "Hartmann (ch. 4)" },
+      { title: "Selected primary literature", authors: "Singh & O'Gorman (2014), Held & Soden (2006), Byrne & O'Gorman, Tziperman WHOI lecture notes, and others" }
+    ]
+  },
+  ode: {
+    num: "MATH-UA 262",
+    title: "Ordinary Differential Equations",
+    description: "A comprehensive introduction to differential equations, covering both first and second-order linear equations. Students explore key concepts including the integrating factor, exact equations, and separation of variables, then progress to numerical solutions, singular points, and the method of Frobenius. The course also covers systems of linear equations, complex eigenvalues, stability analysis, phase plane analysis, and closes with the heat equation and Fourier series.",
+    prerequisites: "Calculus II. Some familiarity with linear algebra is helpful.",
+    outcomes: [
+      "Solve first-order ODEs using integrating factors, separation of variables, and exact equation methods",
+      "Analyze existence and uniqueness of solutions",
+      "Solve second-order linear ODEs with constant and non-constant coefficients, including variation of parameters",
+      "Apply series methods and handle singular points",
+      "Analyze systems of linear equations using eigenvalues and the matrix exponential",
+      "Perform stability and phase plane analysis of dynamical systems",
+      "Apply ODEs to physical problems including spring systems, population models, and the heat equation"
+    ],
+    assessment: "Weekly homework (30%), two midterms (20% each), and a final exam (30%). Best 8 of 10 homework sets count toward the grade.",
+    schedule: [
+      { week: "Week 1", topic: "Introduction; first-order linear equations (Braun 1.1, 1.2)" },
+      { week: "Week 2", topic: "Integrating factor; separation of variables; population models (1.2, 1.4, 1.5)" },
+      { week: "Week 3", topic: "Exact equations; existence and uniqueness (1.9, 1.10)" },
+      { week: "Week 4", topic: "Numerical solutions; review" },
+      { week: "Week 5", topic: "Midterm I; second-order equations (2.1, 2.2)" },
+      { week: "Week 6", topic: "Second-order linear equations with constant and non-constant coefficients; variation of parameters (2.3-2.5)" },
+      { week: "Week 7", topic: "Spring systems; series solutions (2.6, 2.8)" },
+      { week: "Week 8", topic: "Series continued; singular points (2.8)" },
+      { week: "Week 9", topic: "Review for Midterm II; systems of linear equations; eigenvectors (3.1, 3.8)" },
+      { week: "Week 10", topic: "Midterm II; systems continued — complex eigenvalues; matrix exponential (3.9-3.12)" },
+      { week: "Week 11", topic: "Equal roots continued; fixed points (4.1-4.3)" },
+      { week: "Week 12", topic: "Stability analysis (4.3-4.7)" },
+      { week: "Week 13", topic: "Phase plane analysis; two-point boundary value problems (4.3-4.7, 5.1)" },
+      { week: "Week 14", topic: "Heat equation and Fourier series (5.2-5.8)" },
+      { week: "Week 15", topic: "Fourier series continued; final review (5.2-5.8)" }
+    ],
+    references: [
+      { title: "Differential Equations and Their Applications (4th ed.)", authors: "Martin Braun — primary textbook" },
+      { title: "Nonlinear Dynamics and Chaos (ch. 5-6)", authors: "Steven Strogatz — supplementary for dynamical systems" }
+    ]
+  },
+  mm: {
+    num: "Undergraduate — coming next semester",
+    title: "Introduction to Mathematical Modeling",
+    description: "An introduction to the art and practice of building mathematical models of real-world systems. Students move between physical intuition, mathematical formulation, and computational experimentation, learning how models are constructed, validated, and used to generate insight. Applications span the natural and environmental sciences.",
+    prerequisites: "Ordinary differential equations and basic programming experience.",
+    outcomes: [
+      "Formulate mathematical models from physical descriptions",
+      "Analyze model behavior analytically and computationally",
+      "Validate models against data and assess their limitations",
+      "Apply modeling approaches to problems in the environmental and natural sciences"
+    ],
+    assessment: "Problem sets, modeling projects, and presentations. [Details to be added]",
+    schedule: [],
+    references: []
+  }
+};
+
+function openDetail(id) {
+  const c = courses[id];
+  const panel = document.getElementById('detail-panel');
+
+  let scheduleHTML = '';
+  if (c.schedule.length > 0) {
+    scheduleHTML = `
+      <div class="detail-section">
+        <p class="detail-section-title">Schedule</p>
+        <table class="week-table">
+          <thead><tr><th>Week</th><th>Topics</th></tr></thead>
+          <tbody>
+            ${c.schedule.map(row => row.part
+              ? `<tr class="part-row"><td colspan="2">${row.part}</td></tr>`
+              : `<tr><td>${row.week}</td><td>${row.topic}</td></tr>`
+            ).join('')}
+          </tbody>
+        </table>
+      </div>`;
+  }
+
+  let refsHTML = '';
+  if (c.references.length > 0) {
+    refsHTML = `
+      <div class="detail-section">
+        <p class="detail-section-title">References</p>
+        <div class="ref-list">
+          ${c.references.map(r => `<div class="ref-item">${r.title} <em>— ${r.authors}</em></div>`).join('')}
+        </div>
+      </div>`;
+  }
+
+  panel.innerHTML = `
+    <button class="detail-close" onclick="closeAll()">← Back to courses</button>
+    <p class="detail-num">${c.num}</p>
+    <h2 class="detail-title">${c.title}</h2>
+
+    <div class="detail-section">
+      <p class="detail-section-title">About the course</p>
+      <p>${c.description}</p>
+    </div>
+
+    <div class="detail-section">
+      <p class="detail-section-title">Prerequisites</p>
+      <p>${c.prerequisites}</p>
+    </div>
+
+    <div class="detail-section">
+      <p class="detail-section-title">Learning outcomes</p>
+      <ul>${c.outcomes.map(o => `<li>${o}</li>`).join('')}</ul>
+    </div>
+
+    <div class="detail-section">
+      <p class="detail-section-title">Assessment</p>
+      <p>${c.assessment}</p>
+    </div>
+
+    ${scheduleHTML}
+    ${refsHTML}
+  `;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAll() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeDetail(e) {
+  if (e.target === document.getElementById('overlay')) closeAll();
+}
+</script>
+
+</body>
+</html>
