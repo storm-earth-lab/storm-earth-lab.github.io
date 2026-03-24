@@ -420,7 +420,7 @@
   <div class="people-grid">
 
     <div class="person-card" onclick="openDetail('blanke')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/blanke.png" alt="Matthieu Blanke"></div>
+      <div class="photo-wrap"><div class="photo-initials">MB</div></div>
       <div class="person-info">
         <span class="person-name">Matthieu Blanke</span>
         <p class="person-role">Postdoctoral Associate</p>
@@ -438,7 +438,7 @@
     </div>
 
     <div class="person-card" onclick="openDetail('lee')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/lee.png" alt="Jangho Lee"></div>
+      <div class="photo-wrap"><div class="photo-initials">JL</div></div>
       <div class="person-info">
         <span class="person-name">Jangho Lee</span>
         <p class="person-role">Postdoctoral Researcher</p>
@@ -450,21 +450,13 @@
       <div class="photo-wrap"><div class="photo-initials">AN</div></div>
       <div class="person-info">
         <span class="person-name">Anurup Naskar</span>
-        <p class="person-role">Master Student</p>
+        <p class="person-role">PhD Student</p>
         <p class="person-blurb">ARM observatory data retrieval and denoising using machine learning.</p>
-      </div>
-    </div>
-    <div class="person-card" onclick="openDetail('naskar')" style="cursor:pointer;">
-      <div class="photo-wrap"><div class="photo-initials">PTP</div></div>
-      <div class="person-info">
-        <span class="person-name">Pranav Tushar Pradhan</span>
-        <p class="person-role">Master Student</p>
-        <p class="person-blurb">Dynamical system emulation using machine learning.</p>
       </div>
     </div>
 
     <div class="person-card" onclick="openDetail('susskind')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/susskind.png" alt="Tea Susskind"></div>
+      <div class="photo-wrap"><div class="photo-initials">TS</div></div>
       <div class="person-info">
         <span class="person-name">Tea Susskind</span>
         <p class="person-role">PhD Student</p>
@@ -473,7 +465,7 @@
     </div>
 
     <div class="person-card" onclick="openDetail('wong')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/wong.png" alt="Nathanael Wong Zhixin"></div>
+      <div class="photo-wrap"><div class="photo-initials">NW</div></div>
       <div class="person-info">
         <span class="person-name">Nathanael Wong Zhixin</span>
         <p class="person-role">Postdoctoral Researcher</p>
@@ -481,16 +473,53 @@
       </div>
     </div>
 
-    <div class="person-card" onclick="openDetail('naskar')" style="cursor:pointer;">
-      <div class="photo-wrap"><div class="photo-initials">TZ</div></div>
+    <!-- Placeholder 1 -->
+    <div class="person-card placeholder-card">
+      <div class="photo-wrap">
+        <div class="photo-initials">+</div>
+      </div>
       <div class="person-info">
-        <span class="person-name">Tim Zhou</span>
-        <p class="person-role">Master Student</p>
-        <p class="person-blurb">Precipitation modeling using machine learning.</p>
+        <span class="person-name">Placeholder name</span>
+        <p class="person-role">Role</p>
+        <p class="person-blurb">Research description to be added.</p>
       </div>
     </div>
 
-  
+    <!-- Placeholder 2 -->
+    <div class="person-card placeholder-card">
+      <div class="photo-wrap">
+        <div class="photo-initials">+</div>
+      </div>
+      <div class="person-info">
+        <span class="person-name">Placeholder name</span>
+        <p class="person-role">Role</p>
+        <p class="person-blurb">Research description to be added.</p>
+      </div>
+    </div>
+
+    <!-- Placeholder 3 -->
+    <div class="person-card placeholder-card">
+      <div class="photo-wrap">
+        <div class="photo-initials">+</div>
+      </div>
+      <div class="person-info">
+        <span class="person-name">Placeholder name</span>
+        <p class="person-role">Role</p>
+        <p class="person-blurb">Research description to be added.</p>
+      </div>
+    </div>
+
+    <!-- Placeholder 4 -->
+    <div class="person-card placeholder-card">
+      <div class="photo-wrap">
+        <div class="photo-initials">+</div>
+      </div>
+      <div class="person-info">
+        <span class="person-name">Placeholder name</span>
+        <p class="person-role">Role</p>
+        <p class="person-blurb">Research description to be added.</p>
+      </div>
+    </div>
 
   </div>
 
@@ -514,13 +543,23 @@
         <div class="photo-initials">+</div>
       </div>
       <div class="person-info">
-        <span class="person-name">Mario Massy</span>
+        <span class="person-name">Placeholder name</span>
         <p class="person-role">Visiting Researcher</p>
-        <p class="person-blurb">Research description to be added soon.</p>
+        <p class="person-blurb">Research description to be added.</p>
       </div>
     </div>
 
-    
+    <!-- Visitor Placeholder 2 -->
+    <div class="person-card placeholder-card">
+      <div class="photo-wrap">
+        <div class="photo-initials">+</div>
+      </div>
+      <div class="person-info">
+        <span class="person-name">Placeholder name</span>
+        <p class="person-role">Visiting Researcher</p>
+        <p class="person-blurb">Research description to be added.</p>
+      </div>
+    </div>
 
   </div>
 
@@ -549,6 +588,7 @@
 const people = {
   shamekh: {
     initials: "SS",
+    photo: null,
     name: "Sara Shamekh",
     role: "Assistant Professor, NYU Courant — Principal Investigator",
     bio: "Sara Shamekh is an Assistant Professor at the Courant Institute of Mathematical Sciences at New York University. She leads the STORM group, which develops scientific tools for observing, reasoning about, and modeling atmospheric and climate processes.",
@@ -558,6 +598,7 @@ const people = {
   },
   blanke: {
     initials: "MB",
+    photo: "photos/blanke.png",
     name: "Matthieu Blanke",
     role: "Postdoctoral Associate",
     bio: "Matthieu Blanke is a Postdoctoral Associate at the Courant Institute of Mathematical Sciences at New York University and Columbia's LEAP center, working with Sara Shamekh and Pierre Gentine. Before that, he completed his PhD at École Normale Supérieure in the DI ENS and the Inria Argo team, under the supervision of Marc Lelarge. He graduated from the École polytechnique Cycle d'Ingénieur polytechnicien, year X2017.",
@@ -567,6 +608,7 @@ const people = {
   },
   falga: {
     initials: "RF",
+    photo: "photos/falga.png",
     name: "Renaud Falga",
     role: "Postdoctoral Researcher",
     bio: "Renaud Falga is a postdoctoral researcher at NYU's Courant Institute, working with Sara Shamekh and Laure Zanna since March 2024. He completed his PhD at the University of Toulouse III Paul Sabatier, and holds a Bachelor's degree in fundamental physics from Paris-Saclay University and a Master's degree in atmospheric physics from Institut Polytechnique de Paris.",
@@ -575,6 +617,7 @@ const people = {
   },
   lee: {
     initials: "JL",
+    photo: "photos/lee.png",
     name: "Jangho Lee",
     role: "Postdoctoral Researcher",
     bio: "Jangho Lee is a Postdoctoral Researcher at the Courant Institute of Mathematical Sciences at New York University. Prior to this role, he served as a Postdoctoral Research Associate at the University of Illinois Chicago. He received his BS from Seoul National University in South Korea and his PhD from Texas A&M University.",
@@ -584,6 +627,7 @@ const people = {
   },
   naskar: {
     initials: "AN",
+    photo: "photos/naskar.png",
     name: "Anurup Naskar",
     role: "PhD Student",
     bio: "Anurup Naskar is a PhD student at the Courant Institute of Mathematical Sciences at New York University.",
@@ -592,6 +636,7 @@ const people = {
   },
   susskind: {
     initials: "TS",
+    photo: "photos/susskind.png",
     name: "Tea Susskind",
     role: "PhD Student",
     bio: "Tea Susskind is an applied mathematician in the third year of her PhD in Atmosphere Ocean Science Mathematics at NYU Courant, co-advised by Professors Sara Shamekh and Olivier Pauluis. Prior to NYU, she studied Applied and Computational Mathematics at the California Institute of Technology, obtaining her BS in 2023.",
@@ -600,6 +645,7 @@ const people = {
   },
   wong: {
     initials: "NW",
+    photo: "photos/wong.png",
     name: "Nathanael Wong Zhixin",
     role: "Postdoctoral Researcher",
     bio: "Nathanael Wong Zhixin joined the STORM group as a Postdoctoral Researcher in June 2025, after defending his PhD work in Tropical Convection. He was previously a PhD candidate in the Department of Earth and Planetary Sciences at Harvard University under Professor Kuang Zhiming.",
@@ -609,6 +655,7 @@ const people = {
   },
   abramian: {
     initials: "SA",
+    photo: "photos/abramian.png",
     name: "Sophie Abramian",
     role: "Visiting Researcher",
     bio: "Sophie Abramian is a visiting researcher in the STORM group. She is currently a postdoctoral researcher at Columbia University with Pierre Gentine. She completed her PhD in 2023 at École Normale Supérieure in the Laboratoire de Météorologie Dynamique, under the supervision of Caroline Muller and Camille Risi, and was trained in applied physics at École Normale Supérieure Paris-Saclay.",
@@ -622,6 +669,10 @@ function openDetail(id) {
   if (!p) return;
   const panel = document.getElementById('detail-panel');
 
+  const photoHTML = p.photo
+    ? `<div class="detail-photo"><img src="${p.photo}" alt="${p.name}"></div>`
+    : `<div class="detail-photo">${p.initials}</div>`;
+
   const websiteHTML = p.website
     ? `<div class="detail-section">
         <p class="detail-section-title">Links</p>
@@ -631,7 +682,7 @@ function openDetail(id) {
 
   panel.innerHTML = `
     <button class="detail-close" onclick="closeAll()">← Back to people</button>
-    <div class="detail-photo">${p.initials}</div>
+    ${photoHTML}
     <h2 class="detail-name">${p.name}</h2>
     <p class="detail-role">${p.role}</p>
     <div class="detail-section">
