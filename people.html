@@ -230,6 +230,117 @@
       margin: 1rem 0 2.5rem;
     }
 
+    .detail-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(15, 31, 51, 0.45);
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .detail-overlay.open { display: flex; }
+
+    .detail-panel {
+      background: var(--white);
+      width: min(600px, 100vw);
+      height: 100vh;
+      overflow-y: auto;
+      padding: 2.5rem 2rem;
+      animation: slideIn 0.25s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .detail-close {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      margin-bottom: 2rem;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .detail-close:hover { color: var(--text-primary); }
+
+    .detail-photo {
+      width: 90px;
+      height: 90px;
+      border-radius: 10px;
+      background: var(--navy-mist);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .detail-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-name {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+    }
+
+    .detail-role {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0 0 1.5rem;
+    }
+
+    .detail-section {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .detail-section-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-section p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .detail-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 13px;
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .detail-link:hover { color: var(--navy-light); }
+
     footer {
       background: var(--navy-dark);
       color: rgba(255,255,255,0.5);
@@ -291,17 +402,14 @@
   <p class="section-label">Principal Investigator</p>
   <hr class="section-divider">
   <div class="people-grid" style="margin-bottom: 3.5rem;">
-    <div class="person-card">
+    <div class="person-card" onclick="openDetail('shamekh')" style="cursor:pointer;">
       <div class="photo-wrap pi-wrap">
-        <!-- Replace src with your photo filename -->
         <div class="photo-initials">SS</div>
       </div>
       <div class="person-info">
-        <!-- Replace href with your personal webpage -->
-        <a class="person-name" href="contact.html">Sara Shamekh</a><span class="pi-badge">PI</span>
+        <span class="person-name">Sara Shamekh</span><span class="pi-badge">PI</span>
         <p class="person-role">Assistant Professor, NYU Courant</p>
         <p class="person-blurb">Develops scientific tools for observing, reasoning about, and modeling atmospheric and climate processes.</p>
-        <a class="ext-link" href="contact.html">Contact</a>
       </div>
     </div>
   </div>
@@ -311,84 +419,57 @@
   <hr class="section-divider">
   <div class="people-grid">
 
-    <!-- Matthieu Blanke -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/blanke.jpg" alt="Matthieu Blanke"> -->
-        <div class="photo-initials">MB</div>
-      </div>
+    <div class="person-card" onclick="openDetail('blanke')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">MB</div></div>
       <div class="person-info">
-        <a class="person-name" href="https://mb-29.github.io/" target="_blank">Matthieu Blanke</a>
+        <span class="person-name">Matthieu Blanke</span>
         <p class="person-role">Postdoctoral Associate</p>
         <p class="person-blurb">Deep generative models and data-driven methods for dynamical systems, with applications in climate science.</p>
-        <a class="ext-link" href="https://mb-29.github.io/" target="_blank">Personal webpage ↗</a>
       </div>
     </div>
 
-    <!-- Renaud Falga -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/falga.jpg" alt="Renaud Falga"> -->
-        <div class="photo-initials">RF</div>
-      </div>
+    <div class="person-card" onclick="openDetail('falga')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">RF</div></div>
       <div class="person-info">
-        <a class="person-name" href="#">Renaud Falga</a>
+        <span class="person-name">Renaud Falga</span>
         <p class="person-role">Postdoctoral Researcher</p>
         <p class="person-blurb">Atmospheric processes and ML-based parameterizations of boundary layer turbulence and convection.</p>
       </div>
     </div>
 
-    <!-- Jangho Lee -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/lee.jpg" alt="Jangho Lee"> -->
-        <div class="photo-initials">JL</div>
-      </div>
+    <div class="person-card" onclick="openDetail('lee')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">JL</div></div>
       <div class="person-info">
-        <a class="person-name" href="https://jangholee.com" target="_blank">Jangho Lee</a>
+        <span class="person-name">Jangho Lee</span>
         <p class="person-role">Postdoctoral Researcher</p>
         <p class="person-blurb">AI-based downscaling of climate data and urban climate, using generative models for high-resolution atmospheric fields.</p>
-        <a class="ext-link" href="https://jangholee.com" target="_blank">Personal webpage ↗</a>
       </div>
     </div>
 
-    <!-- Anurup Naskar — placeholder photo -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/naskar.jpg" alt="Anurup Naskar"> -->
-        <div class="photo-initials">AN</div>
-      </div>
+    <div class="person-card" onclick="openDetail('naskar')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">AN</div></div>
       <div class="person-info">
-        <a class="person-name" href="#">Anurup Naskar</a>
+        <span class="person-name">Anurup Naskar</span>
         <p class="person-role">PhD Student</p>
         <p class="person-blurb">ARM observatory data retrieval and denoising using machine learning.</p>
       </div>
     </div>
 
-    <!-- Tea Susskind -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/susskind.jpg" alt="Tea Susskind"> -->
-        <div class="photo-initials">TS</div>
-      </div>
+    <div class="person-card" onclick="openDetail('susskind')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">TS</div></div>
       <div class="person-info">
-        <a class="person-name" href="#">Tea Susskind</a>
+        <span class="person-name">Tea Susskind</span>
         <p class="person-role">PhD Student</p>
         <p class="person-blurb">Subgrid-scale turbulent fluxes and convective-scale contributions to atmospheric turbulent kinetic energy.</p>
       </div>
     </div>
 
-    <!-- Nathanael Wong -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/wong.jpg" alt="Nathanael Wong"> -->
-        <div class="photo-initials">NW</div>
-      </div>
+    <div class="person-card" onclick="openDetail('wong')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">NW</div></div>
       <div class="person-info">
-        <a class="person-name" href="https://natgeo-wong.github.io" target="_blank">Nathanael Wong Zhixin</a>
+        <span class="person-name">Nathanael Wong Zhixin</span>
         <p class="person-role">Postdoctoral Researcher</p>
         <p class="person-blurb">Shallow-to-deep convection transitions using ARM observations, reanalysis, and deep learning.</p>
-        <a class="ext-link" href="https://natgeo-wong.github.io" target="_blank">Personal webpage ↗</a>
       </div>
     </div>
 
@@ -447,14 +528,10 @@
   <hr class="section-divider">
   <div class="people-grid">
 
-    <!-- Sophie Abramian -->
-    <div class="person-card">
-      <div class="photo-wrap">
-        <!-- Replace with: <img src="photos/abramian.jpg" alt="Sophie Abramian"> -->
-        <div class="photo-initials">SA</div>
-      </div>
+    <div class="person-card" onclick="openDetail('abramian')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">SA</div></div>
       <div class="person-info">
-        <a class="person-name" href="#">Sophie Abramian</a>
+        <span class="person-name">Sophie Abramian</span>
         <p class="person-role">Visiting Researcher</p>
         <p class="person-blurb">Atmospheric dynamics, latent representations, and Koopman operator frameworks for convection.</p>
       </div>
@@ -501,6 +578,125 @@
     </ul>
   </div>
 </footer>
+
+<!-- DETAIL OVERLAY -->
+<div class="detail-overlay" id="overlay" onclick="closeDetail(event)">
+  <div class="detail-panel" id="detail-panel"></div>
+</div>
+
+<script>
+const people = {
+  shamekh: {
+    initials: "SS",
+    name: "Sara Shamekh",
+    role: "Assistant Professor, NYU Courant — Principal Investigator",
+    bio: "Sara Shamekh is an Assistant Professor at the Courant Institute of Mathematical Sciences at New York University. She leads the STORM group, which develops scientific tools for observing, reasoning about, and modeling atmospheric and climate processes.",
+    research: "Her research spans data-driven parameterization of convection and precipitation, probabilistic generative modeling, and emulation of complex physical systems. She is particularly interested in physics-adherent machine learning, parameter estimation, and predictability of atmospheric processes across scales.",
+    website: "contact.html",
+    websiteLabel: "Contact"
+  },
+  blanke: {
+    initials: "MB",
+    name: "Matthieu Blanke",
+    role: "Postdoctoral Associate",
+    bio: "Matthieu Blanke is a Postdoctoral Associate at the Courant Institute of Mathematical Sciences at New York University and Columbia's LEAP center, working with Sara Shamekh and Pierre Gentine. Before that, he completed his PhD at École Normale Supérieure in the DI ENS and the Inria Argo team, under the supervision of Marc Lelarge. He graduated from the École polytechnique Cycle d'Ingénieur polytechnicien, year X2017.",
+    research: "His research focuses on applied mathematics and physics, with a particular interest in data-driven methods and generative modeling for dynamical systems, targeting applications in the climate sciences.",
+    website: "https://mb-29.github.io/",
+    websiteLabel: "Personal webpage"
+  },
+  falga: {
+    initials: "RF",
+    name: "Renaud Falga",
+    role: "Postdoctoral Researcher",
+    bio: "Renaud Falga is a postdoctoral researcher at NYU's Courant Institute, working with Sara Shamekh and Laure Zanna since March 2024. He completed his PhD at the University of Toulouse III Paul Sabatier, and holds a Bachelor's degree in fundamental physics from Paris-Saclay University and a Master's degree in atmospheric physics from Institut Polytechnique de Paris.",
+    research: "His research focuses on understanding and modeling atmospheric processes, with an emphasis on shallow and deep convection and their role in shaping winds, clouds, and precipitation. He investigates how anthropogenic factors such as aerosols and urbanization modulate convective systems and extreme rainfall, using high-resolution numerical modeling and data-driven approaches, with a particular interest in monsoon precipitation. More recently, his work has centered on developing ML-based parameterizations of boundary layer turbulence to improve momentum transport in climate models.",
+    website: null
+  },
+  lee: {
+    initials: "JL",
+    name: "Jangho Lee",
+    role: "Postdoctoral Researcher",
+    bio: "Jangho Lee is a Postdoctoral Researcher at the Courant Institute of Mathematical Sciences at New York University. Prior to this role, he served as a Postdoctoral Research Associate at the University of Illinois Chicago. He received his BS from Seoul National University in South Korea and his PhD from Texas A&M University.",
+    research: "His research is centered on two interconnected areas. The first is AI-based downscaling of climate data, leveraging generative frameworks such as diffusion models and GANs to enhance spatial resolution and capture fine-grained atmospheric features. The second is urban climate, encompassing multi-scale observations, physical analysis, numerical modeling, and impact assessments. The high-fidelity climate signals generated through AI downscaling are essential for understanding urban microclimates, and by integrating generative AI with physical urban modeling, his work aims to bridge the gap between global climate projections and local-scale realities.",
+    website: "https://jangholee.com",
+    websiteLabel: "Personal webpage"
+  },
+  naskar: {
+    initials: "AN",
+    name: "Anurup Naskar",
+    role: "PhD Student",
+    bio: "Anurup Naskar is a PhD student at the Courant Institute of Mathematical Sciences at New York University.",
+    research: "His research focuses on ARM observatory data retrieval and denoising using machine learning, with applications to convection and planetary boundary layer understanding.",
+    website: null
+  },
+  susskind: {
+    initials: "TS",
+    name: "Tea Susskind",
+    role: "PhD Student",
+    bio: "Tea Susskind is an applied mathematician in the third year of her PhD in Atmosphere Ocean Science Mathematics at NYU Courant, co-advised by Professors Sara Shamekh and Olivier Pauluis. Prior to NYU, she studied Applied and Computational Mathematics at the California Institute of Technology, obtaining her BS in 2023.",
+    research: "Subgrid-scale variables, often as large as 100 km horizontally, have an enormous effect on atmospheric thermodynamics. In particular, turbulent fluxes at the convective scale of individual clouds and smaller cloud systems remain a source of great uncertainty in weather prediction and climate modeling. Her research involves calculating fluxes of simulated thermodynamic variables and filtering this data by length scales to understand the contributions of buoyancy and heat fluxes to atmospheric turbulent kinetic energy at scales characteristic to different climate processes.",
+    website: null
+  },
+  wong: {
+    initials: "NW",
+    name: "Nathanael Wong Zhixin",
+    role: "Postdoctoral Researcher",
+    bio: "Nathanael Wong Zhixin joined the STORM group as a Postdoctoral Researcher in June 2025, after defending his PhD work in Tropical Convection. He was previously a PhD candidate in the Department of Earth and Planetary Sciences at Harvard University under Professor Kuang Zhiming.",
+    research: "His research interests revolve around the intersection of tropical dynamics and convection at all scales. His current work investigates the shallow-to-deep transition of convection using ARM observations, reanalysis datasets, and deep learning techniques. He also has a longstanding interest in the climatology of the Maritime Continent and how it influences the large-scale tropical circulation, using hierarchies of model complexity. In addition, he develops packages in the Julia programming language to streamline analysis of climate observational datasets and modeling output.",
+    website: "https://natgeo-wong.github.io",
+    websiteLabel: "Personal webpage"
+  },
+  abramian: {
+    initials: "SA",
+    name: "Sophie Abramian",
+    role: "Visiting Researcher",
+    bio: "Sophie Abramian is a visiting researcher in the STORM group. She is currently a postdoctoral researcher at Columbia University with Pierre Gentine. She completed her PhD in 2023 at École Normale Supérieure in the Laboratoire de Météorologie Dynamique, under the supervision of Caroline Muller and Camille Risi, and was trained in applied physics at École Normale Supérieure Paris-Saclay.",
+    research: "Her work focuses on atmospheric dynamics, latent representations, and Koopman operator frameworks for convection. Using idealized or global high-resolution simulations, she studies how clouds organize across scales.",
+    website: null
+  }
+};
+
+function openDetail(id) {
+  const p = people[id];
+  if (!p) return;
+  const panel = document.getElementById('detail-panel');
+
+  const websiteHTML = p.website
+    ? `<div class="detail-section">
+        <p class="detail-section-title">Links</p>
+        <a class="detail-link" href="${p.website}" ${p.website.startsWith('http') ? 'target="_blank"' : ''}>${p.websiteLabel} ↗</a>
+       </div>`
+    : '';
+
+  panel.innerHTML = `
+    <button class="detail-close" onclick="closeAll()">← Back to people</button>
+    <div class="detail-photo">${p.initials}</div>
+    <h2 class="detail-name">${p.name}</h2>
+    <p class="detail-role">${p.role}</p>
+    <div class="detail-section">
+      <p class="detail-section-title">Bio</p>
+      <p>${p.bio}</p>
+    </div>
+    <div class="detail-section">
+      <p class="detail-section-title">Research</p>
+      <p>${p.research}</p>
+    </div>
+    ${websiteHTML}
+  `;
+
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAll() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeDetail(e) {
+  if (e.target === document.getElementById('overlay')) closeAll();
+}
+</script>
 
 </body>
 </html>
