@@ -419,15 +419,6 @@
   <hr class="section-divider">
   <div class="people-grid">
 
-    <div class="person-card" onclick="openDetail('blanke')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/blanke.png" alt="Matthieu Blanke"></div>
-      <div class="person-info">
-        <span class="person-name">Matthieu Blanke</span>
-        <p class="person-role">Postdoctoral Associate</p>
-        <p class="person-blurb">Deep generative models and data-driven methods for dynamical systems, with applications in climate science.</p>
-      </div>
-    </div>
-
     <div class="person-card" onclick="openDetail('falga')" style="cursor:pointer;">
       <div class="photo-wrap"><img src="photos/falga.png" alt="Renaud Falga"></div>
       <div class="person-info">
@@ -454,24 +445,6 @@
         <p class="person-blurb">ARM observatory data retrieval and denoising using machine learning.</p>
       </div>
     </div>
-    <div class="person-card" onclick="openDetail('pranav')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/pranav.png" alt="Pranav Tushar Pradhan"></div>
-      <div class="person-info">
-        <span class="person-name">Pranav Tushar Pradhan</span>
-        <p class="person-role">Master Student</p>
-        <p class="person-blurb">Emulation of chaotic dynamical systems with Generative machine learning.</p>
-      </div>
-    </div>
-
-    <div class="person-card" onclick="openDetail('susskind')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/susskind.png" alt="Tea Susskind"></div>
-      <div class="person-info">
-        <span class="person-name">Tea Susskind</span>
-        <p class="person-role">PhD Student</p>
-        <p class="person-blurb">Subgrid-scale turbulent fluxes and convective-scale contributions to atmospheric turbulent kinetic energy.</p>
-      </div>
-    </div>
-
     <div class="person-card" onclick="openDetail('wong')" style="cursor:pointer;">
       <div class="photo-wrap"><img src="photos/wong.png" alt="Nathanael Wong Zhixin"></div>
       <div class="person-info">
@@ -481,17 +454,7 @@
       </div>
     </div>
 
-    <div class="person-card" onclick="openDetail('zhou')" style="cursor:pointer;">
-      <div class="photo-wrap"><img src="photos/zhou.png" alt="Tim Zhou"></div>
-      <div class="person-info">
-        <span class="person-name">Tim Zhou</span>
-        <p class="person-role">Master Student</p>
-        <p class="person-blurb">Precipitation predictabilty across scales using machine learning.</p>
-      </div>
-    </div>
-
   </div>
-
   <!-- VISITORS -->
   <p class="section-label">Visitors</p>
   <hr class="section-divider">
@@ -519,6 +482,40 @@
     </div>
 
     
+
+  </div>
+
+  <!-- PREVIOUS MEMBERS -->
+  <p class="section-label">Previous members</p>
+  <hr class="section-divider">
+  <div class="people-grid">
+
+    <div class="person-card" onclick="openDetail('blanke')" style="cursor:pointer;">
+      <div class="photo-wrap"><img src="photos/blanke.png" alt="Matthieu Blanke"></div>
+      <div class="person-info">
+        <span class="person-name">Matthieu Blanke</span>
+        <p class="person-role">Postdoctoral Associate</p>
+        <p class="person-blurb">Deep generative models and data-driven methods for dynamical systems, with applications in climate science.</p>
+      </div>
+    </div>
+
+    <div class="person-card" onclick="openDetail('pranav')" style="cursor:pointer;">
+      <div class="photo-wrap"><img src="photos/pranav.png" alt="Pranav Tushar Pradhan"></div>
+      <div class="person-info">
+        <span class="person-name">Pranav Tushar Pradhan</span>
+        <p class="person-role">Master Student</p>
+        <p class="person-blurb">Emulation of chaotic dynamical systems with Generative machine learning.</p>
+      </div>
+    </div>
+
+    <div class="person-card" onclick="openDetail('zhou')" style="cursor:pointer;">
+      <div class="photo-wrap"><img src="photos/zhou.png" alt="Tim Zhou"></div>
+      <div class="person-info">
+        <span class="person-name">Tim Zhou</span>
+        <p class="person-role">Master Student</p>
+        <p class="person-blurb">Precipitation predictabilty across scales using machine learning.</p>
+      </div>
+    </div>
 
   </div>
 
@@ -609,15 +606,6 @@ const people = {
     role: "Master Student",
     bio: "Tim Zhou is a master student at the Courant Institute of Mathematical Sciences at New York University.",
     research: "His research focuses on precipitation predictability across scales using machine learning.",
-    website: null
-  },
-  susskind: {
-    initials: "TS",
-    photo: "photos/susskind.png",
-    name: "Tea Susskind",
-    role: "PhD Student",
-    bio: "Tea Susskind is an applied mathematician in the third year of her PhD in Atmosphere Ocean Science Mathematics at NYU Courant, co-advised by Professors Sara Shamekh and Olivier Pauluis. Prior to NYU, she studied Applied and Computational Mathematics at the California Institute of Technology, obtaining her BS in 2023.",
-    research: "Subgrid-scale variables, often as large as 100 km horizontally, have an enormous effect on atmospheric thermodynamics. In particular, turbulent fluxes at the convective scale of individual clouds and smaller cloud systems remain a source of great uncertainty in weather prediction and climate modeling. Her research involves calculating fluxes of simulated thermodynamic variables and filtering this data by length scales to understand the contributions of buoyancy and heat fluxes to atmospheric turbulent kinetic energy at scales characteristic to different climate processes.",
     website: null
   },
   wong: {
