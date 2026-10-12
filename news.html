@@ -176,6 +176,7 @@
     .tag-member { background: #E1F5EE; color: #0F6E56; }
     .tag-talk { background: #E6F1FB; color: #0C447C; }
     .tag-award { background: #FAEEDA; color: #633806; }
+    .tag-opp { background: #FBEAF0; color: #8A2350; }
 
     .news-text {
       font-size: 14px;
@@ -194,6 +195,14 @@
     }
 
     .news-link:hover { color: var(--navy); }
+
+    .news-text a {
+      color: var(--navy);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .news-text a:hover { color: var(--navy-light); }
 
     /* OPPORTUNITIES */
     .opp-section { position: sticky; top: 90px; }
@@ -340,6 +349,15 @@
   <div class="news-section">
     <p class="section-label">Recent news</p>
     <div class="news-list">
+
+      <div class="news-row">
+        <span class="news-date">2026</span>
+        <div class="news-body">
+          <span class="news-tag tag-opp">Opportunity</span>
+          <p class="news-text">We are excited to share a new opportunity at the <a href="https://wp.nyu.edu/sccgf/" target="_blank">Simons Center for Computational Geophysical Flows</a>! The Center is hiring Simons Center Postdoctoral Fellows with a background in machine learning, computer science, engineering, physical science, applied mathematics, atmosphere/ocean science, or related technical discipline.</p>
+          <a class="news-link" href="https://wp.nyu.edu/sccgf/join-us/" target="_blank">Learn more and apply</a>
+        </div>
+      </div>
 
       <div class="news-row">
         <span class="news-date">2026</span>
