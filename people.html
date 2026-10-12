@@ -428,12 +428,30 @@
       </div>
     </div>
 
+    <div class="person-card" onclick="openDetail('gade')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">CG</div></div>
+      <div class="person-info">
+        <span class="person-name">Chinmayee Gade</span>
+        <p class="person-role">Research Assistant</p>
+        <p class="person-blurb">Machine learning estimation of temperature from geospatial satellite and ground-station weather data.</p>
+      </div>
+    </div>
+
     <div class="person-card" onclick="openDetail('lee')" style="cursor:pointer;">
       <div class="photo-wrap"><img src="photos/lee.png" alt="Jangho Lee"></div>
       <div class="person-info">
         <span class="person-name">Jangho Lee</span>
         <p class="person-role">Postdoctoral Researcher</p>
         <p class="person-blurb">AI-based downscaling of climate data and urban climate, using generative models for high-resolution atmospheric fields.</p>
+      </div>
+    </div>
+
+    <div class="person-card" onclick="openDetail('mitchell')" style="cursor:pointer;">
+      <div class="photo-wrap"><div class="photo-initials">NM</div></div>
+      <div class="person-info">
+        <span class="person-name">Nathan Mitchell</span>
+        <p class="person-role">PhD Student</p>
+        <p class="person-blurb">Interpretable, physics-informed neural networks for estimating surface turbulent fluxes.</p>
       </div>
     </div>
 
@@ -445,6 +463,7 @@
         <p class="person-blurb">ARM observatory data retrieval and denoising using machine learning.</p>
       </div>
     </div>
+
     <div class="person-card" onclick="openDetail('wong')" style="cursor:pointer;">
       <div class="photo-wrap"><img src="photos/wong.png" alt="Nathanael Wong Zhixin"></div>
       <div class="person-info">
@@ -571,6 +590,15 @@ const people = {
     research: "His research focuses on understanding and modeling atmospheric processes, with an emphasis on shallow and deep convection and their role in shaping winds, clouds, and precipitation. He investigates how anthropogenic factors such as aerosols and urbanization modulate convective systems and extreme rainfall, using high-resolution numerical modeling and data-driven approaches, with a particular interest in monsoon precipitation. More recently, his work has centered on developing ML-based parameterizations of boundary layer turbulence to improve momentum transport in climate models.",
     website: null
   },
+  gade: {
+    initials: "CG",
+    photo: null,
+    name: "Chinmayee Gade",
+    role: "Research Assistant",
+    bio: "Chinmayee Gade is a Research Assistant in the STORM group at New York University.",
+    research: "Current work focuses on machine learning models for temperature estimation, combining geospatial satellite data with ground-station weather observations.",
+    website: null
+  },
   lee: {
     initials: "JL",
     photo: "photos/lee.png",
@@ -580,6 +608,15 @@ const people = {
     research: "His research is centered on two interconnected areas. The first is AI-based downscaling of climate data, leveraging generative frameworks such as diffusion models and GANs to enhance spatial resolution and capture fine-grained atmospheric features. The second is urban climate, encompassing multi-scale observations, physical analysis, numerical modeling, and impact assessments. The high-fidelity climate signals generated through AI downscaling are essential for understanding urban microclimates, and by integrating generative AI with physical urban modeling, his work aims to bridge the gap between global climate projections and local-scale realities.",
     website: "https://jangholee.com",
     websiteLabel: "Personal webpage"
+  },
+  mitchell: {
+    initials: "NM",
+    photo: null,
+    name: "Nathan Mitchell",
+    role: "PhD Student",
+    bio: "Nathan Mitchell is a PhD student in the STORM group at New York University.",
+    research: "His research applies machine learning and statistical methods to uncover patterns and relationships in atmospheric data, with a particular interest in interpretable, explainable, and physics-informed models. His current work uses neural networks to estimate surface turbulent fluxes, improving on traditional estimates derived from bulk formulae.",
+    website: null
   },
   naskar: {
     initials: "AN",
